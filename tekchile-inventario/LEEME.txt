@@ -1,0 +1,16 @@
+TekChile - Sistema de inventario
+================================
+Para usarlo: abre index.html con doble clic en cualquier navegador.
+Para ponerlo en linea: sube esta carpeta completa a Netlify Drop (app.netlify.com/drop).
+
+Archivos:
+  index.html       Estructura de la pagina
+  css/estilos.css  Diseno y colores
+  js/datos.js      Catalogo de ejemplo (150 productos) - editalo o reemplazalo
+  js/app.js        Logica: buscar, filtrar, stock, movimientos, login
+  assets/logo.svg  Logo provisorio
+
+Notas:
+- Los datos se guardan en el navegador de cada usuario (localStorage).
+  Para compartirlos entre varias personas se necesita una base de datos.
+- El login es de demostracion (admin@tekchile.cl / tekchile) y no protege datos reales.

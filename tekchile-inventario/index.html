@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Inventario TekChile</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+<header><div class="brand"><svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="8" fill="#fff"/><path d="M8 12h14M15 12v17M25 12v17M25 21l8-9M25 21l8 8" stroke="#1b3a6b" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="33" cy="31" r="3" fill="#d52b1e"/></svg><div><h1>TekChile</h1><small>Sistema de inventario</small></div></div><div class="user"><span id="fecha"></span><span class="chip" id="who"></span><button class="btn" id="salir">Cerrar sesión</button></div></header>
+<main>
+<section class="stats" id="stats"></section>
+<nav role="tablist"><button role="tab" aria-selected="true" data-t="cat">Catálogo</button><button role="tab" aria-selected="false" data-t="mov">Movimientos</button></nav>
+
+<section id="cat">
+<div class="bar">
+<input id="q" type="search" placeholder="Buscar por nombre o SKU" aria-label="Buscar">
+<select id="fc" aria-label="Categoría"></select>
+<select id="fe" aria-label="Estado"><option value="">Todo el stock</option><option value="ok">En stock</option><option value="low">Stock bajo</option><option value="out">Agotado</option></select>
+<button class="btn primary" id="nuevo">Agregar producto</button>
+</div>
+<div class="wrap"><table><thead><tr><th>SKU</th><th>Producto</th><th>Categoría</th><th class="num">Precio</th><th class="num">Stock</th><th>Estado</th><th></th></tr></thead><tbody id="rows"></tbody></table></div>
+</section>
+
+<section id="mov" hidden>
+<div class="wrap"><table><thead><tr><th>Fecha</th><th>Producto</th><th>Tipo</th><th class="num">Cantidad</th><th>Nota</th></tr></thead><tbody id="mrows"></tbody></table></div>
+</section>
+</main>
+
+<dialog id="dp"><form method="dialog" class="f" id="fp">
+<h2 id="dpt">Producto</h2>
+<label>Nombre<input id="pn" required></label>
+<div class="two"><label>SKU<input id="ps" required></label><label>Categoría<input id="pc" list="cats" required></label></div>
+<div class="two"><label>Precio (CLP)<input id="pp" type="number" min="0" required></label><label>Stock actual<input id="pst" type="number" min="0" required></label></div>
+<label>Alertar cuando queden menos de<input id="pm" type="number" min="0" required></label>
+<datalist id="cats"></datalist>
+<div class="dact"><button type="button" class="btn" id="cp">Cancelar</button><button class="btn primary">Guardar producto</button></div>
+</form></dialog>
+
+<dialog id="dm"><form method="dialog" class="f" id="fm">
+<h2 id="dmt">Movimiento</h2>
+<div class="two"><label>Tipo<select id="mt"><option value="in">Entrada</option><option value="out">Salida</option></select></label><label>Cantidad<input id="mq" type="number" min="1" required></label></div>
+<label>Nota (opcional)<input id="mn" placeholder="Ej. compra a proveedor, venta #123"></label>
+<div class="dact"><button type="button" class="btn" id="cm">Cancelar</button><button class="btn primary">Registrar movimiento</button></div>
+</form></dialog>
+<footer>© 2026 TekChile · Santiago, Chile · Uso interno</footer>
+<div id="login"><form class="lc f" id="fl"><div class="brand"><svg width="44" height="44" viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="8" fill="#1b3a6b"/><path d="M8 12h14M15 12v17M25 12v17M25 21l8-9M25 21l8 8" stroke="#fff" stroke-width="3.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/><circle cx="33" cy="31" r="3" fill="#d52b1e"/></svg><div><h1>TekChile</h1><small>Sistema de inventario</small></div></div><p>Ingresa con tu cuenta de la empresa.</p><label>Correo<input id="le" type="email" autocomplete="username" required></label><label>Contraseña<input id="lp" type="password" autocomplete="current-password" required></label><p id="lerr" role="alert"></p><button class="btn primary">Ingresar</button><div class="hint">Acceso de demostración: admin@tekchile.cl / tekchile</div></form></div>
+<div id="toast" role="status"></div>
+
+<script src="js/datos.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
